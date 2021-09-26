@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <websocket.h>
 #include "sensorUmidadeSolo.h"
 #include "managerWifi.h"
 
