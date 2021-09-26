@@ -1,0 +1,2 @@
+void managerWiFiCheckButton();
+void managerWiFiInit();

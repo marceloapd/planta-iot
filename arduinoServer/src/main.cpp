@@ -1,10 +1,13 @@
 #include <Arduino.h>
 #include "sensorUmidadeSolo.h"
+#include "managerWifi.h"
 
+    
 void setup() {
-  Serial.begin(9600);
+Serial.begin(9600);
+managerWiFiInit();
 }
 
 void loop() {
-  Serial.println(fazLeituraUmidade());
+managerWiFiCheckButton();
 }
