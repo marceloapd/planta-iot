@@ -1,1 +1,1 @@
-float fazLeituraUmidade();
+float getPercentHumidity();
