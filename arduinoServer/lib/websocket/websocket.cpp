@@ -1,7 +1,11 @@
 #include <WebSocketsServer.h>
 #include <Neotimer.h>
+#include <ESP8266WiFi.h>
+#include <sensorUmidadeSolo.h>
 
-WebSocketsServer webSocket = WebSocketsServer(81);
+
+const int PORT = 81;
+WebSocketsServer webSocket = WebSocketsServer(PORT);
 Neotimer mytimer = Neotimer(2000); // intervalo de envio da msg em sec
 
 
@@ -11,16 +15,24 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length
 }
 
 // send sensor data to client
-void websocketSendData (String data) {
+void websocketSendData () {
+    float humidity = getPercentHumidity();
+    String data = "";
+    data.concat(humidity);
+    // Serial.println(data);
+    delay(5);
     webSocket.loop();
-    
     if (mytimer.repeat()) {
-        webSocket.sendTXT(0, "teste");
+        webSocket.sendTXT(0, data);
     }
 }
 
 // websocket setup
-void webSocketSetup () {
+void webSocketInit () {
     webSocket.begin();
     webSocket.onEvent(webSocketEvent);
+    String messageServer = "WebSocket server started at ws://";
+    messageServer += WiFi.localIP().toString();
+    messageServer += ":" + String(PORT);
+    Serial.println(messageServer);
 }
