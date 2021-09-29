@@ -6,7 +6,7 @@
 
 const int PORT = 81;
 WebSocketsServer webSocket = WebSocketsServer(PORT);
-Neotimer mytimer = Neotimer(2000); // intervalo de envio da msg em sec
+Neotimer mytimer = Neotimer(5000); // intervalo de envio da msg em sec
 
 
 // websocket handler
@@ -19,10 +19,9 @@ void websocketSendData () {
     float humidity = getPercentHumidity();
     String data = "";
     data.concat(humidity);
-    Serial.println(data);
     webSocket.loop();
     if (mytimer.repeat()) {
-        webSocket.sendTXT(0, data);
+        webSocket.sendTXT(0, );
     }
 }
 

@@ -5,7 +5,6 @@ float getPercentHumidity() {
   float umidadePercentual;
 
   valorADC = analogRead(0); //1024 -> 3,3V
-  Serial.println(valorADC);
   umidadePercentual = 100 * ((1024 - (float)valorADC) / 674);
   umidadePercentual = 100 * ((980 - (float)valorADC) / 710);
 
