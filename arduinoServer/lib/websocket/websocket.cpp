@@ -19,6 +19,7 @@ void websocketSendData () {
     float humidity = getPercentHumidity();
     String data = "";
     data.concat(humidity);
+    delay(5);
     webSocket.loop();
     if (mytimer.repeat()) {
         webSocket.sendTXT(0, );
