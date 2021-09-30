@@ -11,6 +11,7 @@ void managerWiFiCheckButton(){
         ESP.restart();
     }
 }
+
 void managerWiFiInit(){
     WiFi.mode(WIFI_STA);
     bool res;

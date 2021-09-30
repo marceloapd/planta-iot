@@ -11,7 +11,7 @@ Neotimer mytimer = Neotimer(5000); // intervalo de envio da msg em sec
 
 // websocket handler
 void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length) {
-    Serial.println("webSocketEvent");
+    // Serial.println("webSocketEvent");
 }
 
 // send sensor data to client
@@ -22,7 +22,7 @@ void websocketSendData () {
     delay(5);
     webSocket.loop();
     if (mytimer.repeat()) {
-        webSocket.sendTXT(0, );
+        webSocket.sendTXT(0, "teste", 6);
     }
 }
 

@@ -13,6 +13,10 @@ export default {
     ]
   },
 
+  server: {
+    host: 'ec2-52-67-179-39.sa-east-1.compute.amazonaws.com'
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],
