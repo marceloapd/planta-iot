@@ -14,7 +14,8 @@ export default {
   },
 
   server: {
-    host: 'ec2-52-67-179-39.sa-east-1.compute.amazonaws.com'
+    host: 'localhost',
+    port: 3000
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
