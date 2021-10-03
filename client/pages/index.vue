@@ -1,5 +1,7 @@
 <template>
-  <SensorChart />
+  <div class="container-fluid mt-5">
+    <SensorChart />
+  </div>
 </template>
 
 <script>

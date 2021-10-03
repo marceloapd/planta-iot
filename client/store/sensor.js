@@ -9,11 +9,13 @@ export const mutations = {
 }
 
 export const actions = {
-  getSensorData ({ _ }) {
-    console.log('WebSocket')
-    const connection = new WebSocket('ws://192.168.1.10:81')
-    connection.onmessage = (event) => {
-      console.log(event.data)
+  async getSensorData ({ _ }) {
+    try {
+      const response = await this.$axios.get('http://192.168.1.11:80/sensors')
+      console.log(response.data)
+      return response.data || null
+    } catch (error) {
+      console.log(error.message)
     }
   }
 }

@@ -1,48 +1,117 @@
 <template>
-  <div class="shadow-lg rounded-lg overflow-hidden">
-    <div class="py-3 px-5 bg-gray-50">
-      Line chart
-    </div>
-    <canvas id="chartline" ref="chartLine" class="p-10" />
-  </div>
+  <canvas
+    id="myChart"
+    ref="myChart"
+    class="chart"
+    style="position: relative; height:40vh; width:80vw"
+  />
 </template>
 
 <script>
+import {
+  Chart,
+  LinearScale,
+  LineController,
+  CategoryScale,
+  LineElement,
+  PointElement
+} from 'chart.js'
+
 export default {
   data () {
-    return {}
+    return {
+      chart: null,
+      chartData: {}
+    }
   },
-  head: {
-    script: [
-      {
-        src: 'https://cdn.jsdelivr.net/npm/chart.js'
-      }
-    ]
+
+  async mounted () {
+    await this.initChart()
+    await this.updateChart()
   },
-  mounted () {
-    this.initChart()
-  },
+
   methods: {
-    initChart () {
-      const data = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-        datasets: [
-          {
-            label: 'My First dataset',
-            backgroundColor: 'hsl(252, 82.9%, 67.8%)',
-            borderColor: 'hsl(252, 82.9%, 67.8%)',
-            data: [0, 10, 5, 2, 20, 30, 45]
-          }
-        ]
-      }
-      const config = {
+    registerChartElements () {
+      Chart.register(
+        LinearScale,
+        LineController,
+        CategoryScale,
+        LineElement,
+        PointElement
+      )
+    },
+
+    getChart () {
+      return this.$refs.myChart.getContext('2d')
+    },
+
+    async initChart () {
+      this.registerChartElements()
+      const myChart = this.getChart()
+      await this.initChartData()
+      this.chart = new Chart(myChart, {
         type: 'line',
-        data,
-        options: {}
+        data: this.chartData
+      })
+    },
+
+    async initChartData () {
+      const datasets = await this.buildDatasets()
+      this.chartData = {
+        labels: [this.getHours()],
+        datasets
       }
-      // eslint-disable-next-line no-undef
-      const chart = new Chart(this.$refs.chartLine, config)
-      chart.resize(250, 500)
+    },
+
+    async buildDatasets () {
+      const data = await this.$store.dispatch('sensor/getSensorData')
+      const colors = ['rgb(255, 0, 0)', 'rgb(0, 255, 0)']
+      const datasets = []
+      if (!data) {
+        datasets.push({
+          label: 'teste',
+          data: [1],
+          fill: false,
+          borderColor: colors[0],
+          tension: 0
+        })
+        return datasets
+      }
+      Object.entries(data).forEach(([key, value], index) => {
+        const data = {
+          label: key,
+          data: [value],
+          fill: false,
+          borderColor: colors[index],
+          tension: 0.1
+        }
+        datasets.push(data)
+      })
+      return datasets
+    },
+
+    addDataToChart (data) {
+      const hours = this.getHours()
+      this.chartData.labels.push(hours)
+      this.chartData.datasets.forEach((dataset) => {
+        dataset.data.push(data[dataset.label])
+      })
+      this.chart.update()
+    },
+
+    getHours () {
+      const today = new Date()
+      return `${today.getHours()}:${today.getMinutes()}`
+    },
+
+    updateChart () {
+      setInterval(async () => {
+        const data = await this.$store.dispatch('sensor/getSensorData')
+        if (!data || !Object.keys(data).length) {
+          return
+        }
+        this.addDataToChart(data)
+      }, 5000)
     }
   }
 }
