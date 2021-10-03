@@ -10,11 +10,30 @@
 <script>
 import {
   Chart,
-  LinearScale,
-  LineController,
-  CategoryScale,
+  ArcElement,
   LineElement,
-  PointElement
+  BarElement,
+  PointElement,
+  BarController,
+  BubbleController,
+  DoughnutController,
+  LineController,
+  PieController,
+  PolarAreaController,
+  RadarController,
+  ScatterController,
+  CategoryScale,
+  LinearScale,
+  LogarithmicScale,
+  RadialLinearScale,
+  TimeScale,
+  TimeSeriesScale,
+  Decimation,
+  Filler,
+  Legend,
+  Title,
+  Tooltip,
+  SubTitle
 } from 'chart.js'
 
 export default {
@@ -33,21 +52,36 @@ export default {
   methods: {
     registerChartElements () {
       Chart.register(
-        LinearScale,
-        LineController,
-        CategoryScale,
+        ArcElement,
         LineElement,
-        PointElement
+        BarElement,
+        PointElement,
+        BarController,
+        BubbleController,
+        DoughnutController,
+        LineController,
+        PieController,
+        PolarAreaController,
+        RadarController,
+        ScatterController,
+        CategoryScale,
+        LinearScale,
+        LogarithmicScale,
+        RadialLinearScale,
+        TimeScale,
+        TimeSeriesScale,
+        Decimation,
+        Filler,
+        Legend,
+        Title,
+        Tooltip,
+        SubTitle
       )
-    },
-
-    getChart () {
-      return this.$refs.myChart.getContext('2d')
     },
 
     async initChart () {
       this.registerChartElements()
-      const myChart = this.getChart()
+      const myChart = this.$refs.myChart.getContext('2d')
       await this.initChartData()
       this.chart = new Chart(myChart, {
         type: 'line',
@@ -56,47 +90,27 @@ export default {
     },
 
     async initChartData () {
-      const datasets = await this.buildDatasets()
+      const datasets = await this.$store.dispatch('sensor/buildInitialDatasets')
       this.chartData = {
         labels: [this.getHours()],
         datasets
       }
     },
 
-    async buildDatasets () {
-      const data = await this.$store.dispatch('sensor/getSensorData')
-      const colors = ['rgb(255, 0, 0)', 'rgb(0, 255, 0)']
-      const datasets = []
-      if (!data) {
-        datasets.push({
-          label: 'teste',
-          data: [1],
-          fill: false,
-          borderColor: colors[0],
-          tension: 0
-        })
-        return datasets
-      }
-      Object.entries(data).forEach(([key, value], index) => {
-        const data = {
-          label: key,
-          data: [value],
-          fill: false,
-          borderColor: colors[index],
-          tension: 0.1
-        }
-        datasets.push(data)
-      })
-      return datasets
-    },
-
     addDataToChart (data) {
-      const hours = this.getHours()
-      this.chartData.labels.push(hours)
+      let hasData = false
       this.chartData.datasets.forEach((dataset) => {
-        dataset.data.push(data[dataset.label])
+        const label = dataset.label
+        if (data[label] !== undefined) {
+          dataset.data.push(data[label])
+          hasData = true
+        }
       })
-      this.chart.update()
+      if (hasData) {
+        const hours = this.getHours()
+        this.chartData.labels.push(hours)
+        this.chart.update()
+      }
     },
 
     getHours () {

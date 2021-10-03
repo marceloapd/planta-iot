@@ -6,12 +6,12 @@
 void setup() {
     Serial.begin(9600);
     managerWiFiInit();
-    webSocketInit();
+    // webSocketInit();
     webServerInit();
 }
 
 void loop() {
     managerWiFiCheckButton();
-    websocketSendData();
+    // websocketSendData();
     handleClient();
 }
