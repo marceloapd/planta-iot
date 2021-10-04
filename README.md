@@ -24,31 +24,41 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
 <!---Estes são apenas requisitos de exemplo. Adicionar, duplicar ou remover conforme necessário--->
-* Você possui `ESP8266 / Sensor de Umidade do Solo`
-* Você instalou a versão mais recente de `Node.js`
+* Você possui `ESP8266 e um Sensor de Umidade do Solo`
+* Você instalou a versão mais recente de `Node.js / VSCode / Driver CH340`
 * Você tem uma máquina `Windows / Linux / Mac`.
-* Você leu `guia / link / documentação_relacionada_ao_projeto`.
 
-## 🚀 Instalando <Planta-IoT>
+## 🚀 Instalando Planta-IoT
 
-Para instalar o <Planta-IoT>, siga estas etapas:
+Para instalar o Planta-IoT, siga estas etapas:
  
-Esquematico:
+Monte o circuito abaixo:
   
-<img src="https://user-images.githubusercontent.com/71731452/135925449-a17d6983-8189-41a3-a064-a661ccfdb9e1.png" width="409" height="179" alt="esquematico">
+<img src="https://user-images.githubusercontent.com/71731452/135925449-a17d6983-8189-41a3-a064-a661ccfdb9e1.png" width="812" height="357" alt="esquematico">
+ 
+Abra a pasta arduinoServer utilizando a extensão [PlatformIO](https://platformio.org/install/ide?install=vscode) do VSCode e faça upload do firmware.
+ 
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/71731452/135932280-bd088aac-62ac-4487-b974-5555657336fd.gif)
 
-Windows, Linux e macOS:
-```
-<comando_de_instalação>
-```
-
-## ☕ Usando <nome_do_projeto>
-
-Para usar <nome_do_projeto>, siga estas etapas:
+Agora dentro da pasta twitterAPI execute os comandos:
 
 ```
-<exemplo_de_uso>
+npm install
 ```
+
+## ☕ Usando Planta-IoT
+
+Para usar Planta-IoT, siga estas etapas:
+
+Com o ESP8266 ligado conecte a rede WiFi de nome "Planta IoT" e informe as credenciais
+ 
+<img src="https://user-images.githubusercontent.com/71731452/135929703-6bf5a1d3-43ae-4a34-a354-234f56ded094.jpg" width="295" height="412" alt="WiFi">  |  <img src="https://user-images.githubusercontent.com/71731452/135929409-0cc3ed30-5943-4edc-b937-78b8c19495e1.jpg" width="295" height="412" alt="WiFi"> |  <img src="https://user-images.githubusercontent.com/71731452/135929922-74966263-9418-4a75-836b-fc6827523bf1.jpg" width="295" height="412" alt="WiFi"> 
+ 
+Dentro da pasta twitterAPI rode o comando:
+```
+node main.js
+```
+![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/71731452/135933836-e5c2c3bf-a0d0-42f4-85b0-dd1362df51f3.gif)
 
 Adicione comandos de execução e exemplos que você acha que os usuários acharão úteis. Fornece uma referência de opções para pontos de bônus!
 
