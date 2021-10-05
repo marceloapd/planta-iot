@@ -58,11 +58,18 @@ Dentro da pasta twitterAPI rode o comando:
 ```
 node main.js
 ```
-![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/71731452/135933836-e5c2c3bf-a0d0-42f4-85b0-dd1362df51f3.gif)
+<!-- ![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/71731452/135933836-e5c2c3bf-a0d0-42f4-85b0-dd1362df51f3.gif) -->
+Quando a planta Tweeta ?
 
-Adicione comandos de execução e exemplos que você acha que os usuários acharão úteis. Fornece uma referência de opções para pontos de bônus!
+Todo dia as 08:00 A.M a "planta" ira tweetar uma frase com sua umidade do solo atual:
 
-## 📫 Contribuindo para <nome_do_projeto>
+<img src="https://user-images.githubusercontent.com/71731452/135941176-1f31361b-67e9-4a99-835a-384a73ef65c0.gif" alt="exemplo de funcionamento"> | <img src="https://user-images.githubusercontent.com/71731452/135941187-3f9dbaed-2b0f-4674-9334-85c72cdd4c5b.gif" alt="exemplo de funcionamento">
+
+Caso a planta receba muito agua a mesma ira tweetar um aviso.
+
+Caso a planta perca a conexão com seu sensores ou a API a mesma ira tweetar um aviso.
+
+## 📫 Contribuindo para Planta-IoT
 <!---Se o seu README for longo ou se você tiver algum processo ou etapas específicas que deseja que os contribuidores sigam, considere a criação de um arquivo CONTRIBUTING.md separado--->
 Para contribuir com <nome_do_projeto>, siga estas etapas:
 
@@ -82,25 +89,17 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
   <tr>
     <td align="center">
       <a href="#">
-        <img src="https://avatars3.githubusercontent.com/u/31936044" width="100px;" alt="Foto do Iuri Silva no GitHub"/><br>
+        <img src="https://avatars.githubusercontent.com/u/71731452?v=4" width="100px;" alt="Foto do Marcelo Assis no GitHub"/><br>
         <sub>
-          <b>Iuri Silva</b>
+          <b>Marcelo Assis</b>
         </sub>
       </a>
     </td>
     <td align="center">
       <a href="#">
-        <img src="https://s2.glbimg.com/FUcw2usZfSTL6yCCGj3L3v3SpJ8=/smart/e.glbimg.com/og/ed/f/original/2019/04/25/zuckerberg_podcast.jpg" width="100px;" alt="Foto do Mark Zuckerberg"/><br>
+        <img src="https://avatars.githubusercontent.com/u/65235458?v=4" width="100px;" alt="Foto do Matheus Assis no GitHub"/><br>
         <sub>
-          <b>Mark Zuckerberg</b>
-        </sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="#">
-        <img src="https://miro.medium.com/max/360/0*1SkS3mSorArvY9kS.jpg" width="100px;" alt="Foto do Steve Jobs"/><br>
-        <sub>
-          <b>Steve Jobs</b>
+          <b>Matheus Assis</b>
         </sub>
       </a>
     </td>
@@ -116,4 +115,4 @@ Quer fazer parte desse projeto? Clique [AQUI](CONTRIBUTING.md) e leia como contr
 
 Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE.md) para mais detalhes.
 
-[⬆ Voltar ao topo](#nome-do-projeto)<br>
+[⬆ Voltar ao topo](README.md)<br>
