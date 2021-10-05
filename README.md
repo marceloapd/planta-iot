@@ -52,7 +52,7 @@ Para usar Planta-IoT, siga estas etapas:
 
 Com o ESP8266 ligado conecte a rede WiFi de nome "Planta IoT" e informe as credenciais
  
-<img src="https://user-images.githubusercontent.com/71731452/135929703-6bf5a1d3-43ae-4a34-a354-234f56ded094.jpg" width="295" height="412" alt="WiFi">  |  <img src="https://user-images.githubusercontent.com/71731452/135929409-0cc3ed30-5943-4edc-b937-78b8c19495e1.jpg" width="295" height="412" alt="WiFi"> |  <img src="https://user-images.githubusercontent.com/71731452/135929922-74966263-9418-4a75-836b-fc6827523bf1.jpg" width="295" height="412" alt="WiFi"> 
+<img src="https://user-images.githubusercontent.com/71731452/135929703-6bf5a1d3-43ae-4a34-a354-234f56ded094.jpg" width="270" height="377" alt="WiFi">  |  <img src="https://user-images.githubusercontent.com/71731452/135929409-0cc3ed30-5943-4edc-b937-78b8c19495e1.jpg" width="270" height="377" alt="WiFi"> |  <img src="https://user-images.githubusercontent.com/71731452/135929922-74966263-9418-4a75-836b-fc6827523bf1.jpg" width="270" height="377" alt="WiFi"> 
  
 Dentro da pasta twitterAPI rode o comando:
 ```
