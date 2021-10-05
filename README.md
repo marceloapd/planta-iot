@@ -63,7 +63,7 @@ Quando a planta Tweeta ?
 
 Todo dia as 08:00 A.M a "planta" ira tweetar uma frase com sua umidade do solo atual:
 
-<img src="https://user-images.githubusercontent.com/71731452/135941176-1f31361b-67e9-4a99-835a-384a73ef65c0.gif" width="500" height="454" alt="exemplo de funcionamento"><img src="https://user-images.githubusercontent.com/71731452/135941187-3f9dbaed-2b0f-4674-9334-85c72cdd4c5b.gif"  width="500" height="454" alt="exemplo de funcionamento">
+<img src="https://user-images.githubusercontent.com/71731452/135941176-1f31361b-67e9-4a99-835a-384a73ef65c0.gif" width="450" height="409" alt="exemplo de funcionamento"><img src="https://user-images.githubusercontent.com/71731452/135941187-3f9dbaed-2b0f-4674-9334-85c72cdd4c5b.gif"  width="450" height="409" alt="exemplo de funcionamento">
 
 Caso a planta receba muito agua a mesma ira tweetar um aviso.
 
