@@ -16,7 +16,6 @@ createPhrases.getFrases(config.phraseType) // comente se o db estiver populado
 
 async function getRandomPhrase(){
     let randomPhrase = await Frase.findAll({ order: Sequelize.literal('random()'), limit: 1 })
-    console.log(`Tamanho da frase gerada: ${randomPhrase[0].dataValues.texto.length}`)
     if(randomPhrase[0].dataValues.texto.length>157){
         return getRandomPhrase()
     }else{
@@ -27,9 +26,9 @@ async function getRandomPhrase(){
 async function dangerAlerts(){
     checkSensor = setInterval(async function(){
         let sensor = await apiEsp.getSensorData()
-        if(sensor<1 || sensor>90){
-            tweetFunctions.sendTweet(`${config.twitterUser} ${recommendations.getAlerts(sensor)}`)
-            duration = (60000*60)*14 // 6 horas (60000*60)*6
+        if(sensor.value<1 || sensor.value>90){
+            tweetFunctions.sendTweet(`${config.twitterUser} ${recommendations.getAlerts(sensor.value)}`)
+            duration = (60000*60)*14 // 14 horas 
             clearInterval(checkSensor)
             await readline.clearLine(process.stdout);
             await readline.cursorTo(process.stdout, 0);
@@ -41,9 +40,16 @@ async function dangerAlerts(){
 }
 
 async function sendMorningTweet(){
+    let sensor = await apiEsp.getSensorData()
     const msg = await getRandomPhrase()
-    let sensor = await recommendations.getRecommendations()
-    tweetFunctions.sendTweet(`${msg}\n\n${config.twitterUser} ${sensor}\n\nBom dia.`)
+    if(sensor.status === 200){
+        readline.clearLine(process.stdout)
+        readline.cursorTo(process.stdout, 0)
+        let recommendation = await recommendations.getRecommendations(sensor.value)
+        tweetFunctions.sendTweet(`${msg}\n\n${config.twitterUser} a umidade do meu solo hoje é de ${sensor.value}% ${recommendation}\n\nBom dia.`)
+    }else{
+        tweetFunctions.sendTweet(`${config.twitterUser} não estou conseguindo se comunicar com meu microcontrolador, pode olhar oque houve ?\n\nsem essa comunicação não consigo entender meus sensores.\n\nBom dia pra quem neh ?`)
+    }
 }
 
 cron.schedule('0 8 * * *', () => {

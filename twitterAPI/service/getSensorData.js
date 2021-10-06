@@ -1,26 +1,47 @@
 const axios = require("axios");
 const readline = require('readline');
 const tweetFunctions = require('../service/tweetFunctions')
+const config = require('../confg/confg.json')
 
-var flag = true
+let flag = true
 
 async function getSensorData(){
-    let sensor = await axios.get('http://192.168.1.13/sensors')
-    sensor = parseInt(sensor.data.humidity)
-    return sensor
+    let sensor 
+    try{
+        sensor = await axios.get('http://192.168.1.13:80/sensors', {timeout: 1200})
+        if(sensor.status === 200){
+        sensorValue = parseInt(sensor.data.humidity)
+        flag = true
+        return {value: sensorValue, status: sensor.status}
+        }
+    }catch(error){
+        if(flag){
+            tweetFunctions.sendTweet(`${config.twitterUser} estou com problemas de conexão\n\nERROR: ${error.toJSON().code}`)
+            console.log(`\nproblema de conexão ERROR: ${error.toJSON().code}`)
+            flag = false
+        }
+        return {value: 'off', status: 400}
+    }
 }
 
-function writeWaitingPercent(p) {
-    readline.clearLine(process.stdout);
-    readline.cursorTo(process.stdout, 0);
-    process.stdout.write(`Umidade do solo: ${p}%`);
+function writeLog(frase, cursor) {
+    readline.clearLine(process.stdout)
+    readline.cursorTo(process.stdout, cursor)
+    process.stdout.write(frase);
 }
 
 
 setInterval(async function(){
-    sensor = await getSensorData()
-    writeWaitingPercent(sensor)
-    return sensor
+    try{
+        sensor = await getSensorData()
+    }catch(error){
+        console.log(error)
+    }
+    if(sensor.value){
+        writeLog(`Umidade do solo: ${sensor.value}%`,0)
+        return sensor
+    }
+    return
 },1000)
 
 

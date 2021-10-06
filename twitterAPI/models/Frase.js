@@ -1,7 +1,7 @@
-const {DataTypes} = require('sequelize')
+const { DataTypes } = require('sequelize')
 const db = require('../database/db')
 
-const Frase = db.define('Frase', { 
+const Frase = db.define('Frase', {
     autor: {
         type: DataTypes.STRING(157)
     },
@@ -9,13 +9,13 @@ const Frase = db.define('Frase', {
         type: DataTypes.STRING(157),
     }
 },
-{
-    freezeTableName: true
-}
+    {
+        freezeTableName: true
+    }
 )
 
 
-Frase.sync({alter: true}) // comente se o db estiver populado
+// Frase.sync({alter: true}) // comente se o db estiver populado
 
 
 module.exports = Frase

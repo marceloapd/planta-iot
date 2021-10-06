@@ -34,7 +34,8 @@ void webServerInit() {
     setHeaders();
     server.begin();
     String ipLocal = WiFi.localIP().toString();
-    Serial.println("HTTP server started at " + ipLocal + ":" + String(port));
+    String ipMac = WiFi.macAddress();
+    Serial.println("HTTP server started at " + ipLocal + ":" + String(port) + "\n\nMAC: " + ipMac );
 }
 
 void handleClient () {

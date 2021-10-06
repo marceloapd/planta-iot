@@ -14,7 +14,7 @@ function capitalizeFirstLetter(string) {
 
 async function getFrases(term){
     console.log('⌛ Buscando Frases...')
-    const { count, rows } = await Frase.findAndCountAll({})
+    const { count, _ } = await Frase.findAndCountAll({})
     if (count< 1){
         let pensador = await axios.get(`${url}/${term}`);
         let pensadorFrases = new JSDOM(pensador.data);
