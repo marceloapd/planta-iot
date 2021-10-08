@@ -18,6 +18,8 @@
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
 - [x] Tweetar frases relacionadas a plantas todas as manhãs.
+- [ ] Piscar led a cada request
+- [ ] Painel de controle no front-end
 - [ ] Regressão linear para fazer previsões de quando regar a planta novamente.
 
 ## 💻 Pré-requisitos
