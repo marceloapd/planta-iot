@@ -42,7 +42,7 @@ setInterval(async function(){
         return sensor
     }
     return
-},1000)
+},5000)
 
 
 module.exports = {
