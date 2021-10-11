@@ -1,0 +1,20 @@
+{
+  "name": "twitterapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "axios": "^0.22.0",
+    "jsdom": "^16.7.0",
+    "node-cron": "^3.0.0",
+    "sequelize": "^6.7.0",
+    "sqlite3": "^5.0.2",
+    "twitter": "^1.7.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
