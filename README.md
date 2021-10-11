@@ -18,6 +18,8 @@
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
 - [x] Tweetar frases relacionadas a plantas todas as manhãs.
+- [ ] Piscar led a cada request
+- [ ] Painel de controle no front-end
 - [ ] Regressão linear para fazer previsões de quando regar a planta novamente.
 
 ## 💻 Pré-requisitos
@@ -36,7 +38,7 @@ Monte o circuito abaixo:
   
 <img src="https://user-images.githubusercontent.com/71731452/135925449-a17d6983-8189-41a3-a064-a661ccfdb9e1.png" width="812" height="357" alt="esquematico">
  
-Abra a pasta arduinoServer utilizando a extensão [PlatformIO](https://platformio.org/install/ide?install=vscode) do VSCode e faça upload do firmware.
+Abra a pasta firmware utilizando a extensão [PlatformIO](https://platformio.org/install/ide?install=vscode) do VSCode e faça upload do firmware.
  
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/71731452/135932280-bd088aac-62ac-4487-b974-5555657336fd.gif)
 
@@ -80,14 +82,6 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
         <img src="https://avatars.githubusercontent.com/u/71731452?v=4" width="100px;" alt="Foto do Marcelo Assis no GitHub"/><br>
         <sub>
           <b>Marcelo Assis</b>
-        </sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="#">
-        <img src="https://avatars.githubusercontent.com/u/65235458?v=4" width="100px;" alt="Foto do Matheus Assis no GitHub"/><br>
-        <sub>
-          <b>Matheus Assis</b>
         </sub>
       </a>
     </td>
