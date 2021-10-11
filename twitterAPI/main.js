@@ -52,7 +52,7 @@ async function sendMorningTweet(){
     }
 }
 
-cron.schedule('0 8 * * *', () => {
+cron.schedule('0 7 * * *', () => {
     sendMorningTweet()
 });
 

@@ -2,7 +2,7 @@
 #include <ESP8266WiFi.h>
 #include "sensorUmidadeSolo.h"
 
-int port = 80;
+int port = 5000;
 ESP8266WebServer server(port);
 
 void setHeaders () {
