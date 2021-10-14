@@ -8,7 +8,7 @@ let flag = true
 async function getSensorData(){
     let sensor 
     try{
-        sensor = await axios.get('http://186.209.191.126:5000/sensors', {timeout: 3000})
+        sensor = await axios.get('http://186.209.191.126:5000/sensors', {timeout: 6000})
         if(sensor.status === 200){
         sensorValue = parseInt(sensor.data.humidity)
         flag = true
@@ -42,7 +42,7 @@ setInterval(async function(){
         return sensor
     }
     return
-},5000)
+},10000)
 
 
 module.exports = {
