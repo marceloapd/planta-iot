@@ -16,7 +16,7 @@ async function getSensorData(){
         }
     }catch(error){
         if(flag){
-            tweetFunctions.sendTweet(`${config.twitterUser} estou com problemas de conexão\n\nERROR: ${error.toJSON().code}`)
+            // tweetFunctions.sendTweet(`${config.twitterUser} estou com problemas de conexão\n\nERROR: ${error.toJSON().code}`)
             console.log(`\nproblema de conexão ERROR: ${error.toJSON().code}`)
             flag = false
         }

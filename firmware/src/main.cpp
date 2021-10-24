@@ -5,9 +5,11 @@
 
 void setup() {
     Serial.begin(9600);
+    pinMode(BUILTIN_LED, OUTPUT);
+    digitalWrite(BUILTIN_LED, HIGH);
     managerWiFiInit();
-    // webSocketInit();
     webServerInit();
+    // webSocketInit();
 }
 
 void loop() {

@@ -16,12 +16,20 @@ void handleNotFounded() {
     server.send(404, "application/json", "Not found");
 };
 
+void blinkLed() {
+    digitalWrite(BUILTIN_LED, LOW);
+    delay(500);
+    digitalWrite(BUILTIN_LED, HIGH); 
+}
+
 void sensors() {
     float humidity = getPercentHumidity();
     setHeaders();
     String data = "{\"humidity\":" + String(humidity) + "}";
     server.send(200, "application/json", data);
+    blinkLed();
 }
+
 
 
 void setRoutes () {
