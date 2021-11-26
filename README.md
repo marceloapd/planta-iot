@@ -20,6 +20,7 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [x] Tweetar frases relacionadas a plantas todas as manhãs.
 - [x] Piscar led a cada request
 - [ ] Corrigir erro intermitente de não salvar senha WiFi
+- [ ] Feature para agradecer quando é irrigada
 - [ ] Painel de controle no front-end
 - [ ] Regressão linear para fazer previsões de quando regar a planta novamente.
 
