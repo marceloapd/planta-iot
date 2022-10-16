@@ -2,6 +2,7 @@
 #include <WiFiManager.h> // https://github.com/tzapu/WiFiManager
 #include <EEPROM.h>
 #include "sensorUmidadeSolo.h"
+#include "webServerAPI.h"
 #define flashButton D3
 WiFiManager wm;
 char consumerKey[200];
@@ -25,7 +26,7 @@ WiFiManagerParameter custom_text("<br/>Preencha os campos abaixo<br/>");
 
 void managerWiFiCheckButton(){
     if (digitalRead(flashButton) == LOW){
-        getPercentHumidity();
+        printDatas();
         delay(180);
 		if (buttonActive == false) {
 
@@ -52,7 +53,7 @@ void managerWiFiCheckButton(){
 String getParams(){
     String ipMac = WiFi.macAddress();
     float humidity = getPercentHumidity();
-    return "{\"consumerKeyParam\": \"" + String(consumerKeyParam.getValue()) + "\",\"consumerSecretParam\": \"" + String(consumerSecretParam.getValue()) + "\",\"accessTokenKeyParam\": \"" + String(accessTokenKeyParam.getValue()) + "\",\"accessTokenSecretParam\": \"" + String(accessTokenSecretParam.getValue()) + "\",\"phraseTypeParam\": \"" + String(phraseTypeParam.getValue()) + "\",\"twitterUserParam\": \"" + String(twitterUserParam.getValue()) +"\",\"humidity\":" + humidity +",\"MAC\": \"" + String(ipMac) + "\"}";
+    return "{\"consumerKey\": \"" + String(consumerKeyParam.getValue()) + "\",\"consumerSecret\": \"" + String(consumerSecretParam.getValue()) + "\",\"accessTokenKey\": \"" + String(accessTokenKeyParam.getValue()) + "\",\"accessTokenSecret\": \"" + String(accessTokenSecretParam.getValue()) + "\",\"phraseType\": \"" + String(phraseTypeParam.getValue()) + "\",\"twitterUser\": \"" + String(twitterUserParam.getValue()) +"\",\"humidity\":" + humidity +",\"MAC\": \"" + String(ipMac) + "\"}";
 }
 
 void managerWiFiInit(){ 
