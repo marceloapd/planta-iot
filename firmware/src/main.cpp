@@ -1,7 +1,7 @@
 #include <Arduino.h>
-#include "websocket.h"
 #include "managerWifi.h"
 #include "webServerAPI.h"
+#include "sensorUmidadeSolo.h"
 
 void setup() {
     Serial.begin(9600);
@@ -9,11 +9,9 @@ void setup() {
     digitalWrite(BUILTIN_LED, HIGH);
     managerWiFiInit();
     webServerInit();
-    // webSocketInit();
 }
 
 void loop() {
     managerWiFiCheckButton();
-    // websocketSendData();
     handleClient();
 }
