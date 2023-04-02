@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "managerWifi.h"
 #include "webServerAPI.h"
+#include "managerTwitter.h"
 #include "sensorUmidadeSolo.h"
 #include "abstracts.h"
 #include <TimerEvent.h>

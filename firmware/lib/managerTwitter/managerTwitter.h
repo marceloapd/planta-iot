@@ -1,0 +1,1 @@
+void sendTweet(String apiKey, String tweet);
