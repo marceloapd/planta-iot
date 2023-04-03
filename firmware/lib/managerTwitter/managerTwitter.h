@@ -1,1 +1,1 @@
-void sendTweet(String apiKey, String tweet);
+void sendTweet(String status);

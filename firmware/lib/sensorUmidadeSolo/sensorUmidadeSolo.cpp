@@ -10,6 +10,7 @@ float getPercentHumidity() {
   value = constrain(valorADC,700, 1024);
   umidadePercentual = map(value,700, 1024, 100, 0);
 
+  // Serial.println("valorADC: " + String(valorADC) + " umidadePercentual: " + umidadePercentual );
   return umidadePercentual;
 }
 

@@ -6,7 +6,7 @@
 #include "abstracts.h"
 #include <TimerEvent.h>
 
-const unsigned int timeToSend = hour(1);
+const unsigned int timeToSend = hour(6);
 const unsigned int timeToUpdate = min(30);
 
 TimerEvent cronSendData;
@@ -29,14 +29,12 @@ void setup() {
 
 void warn(){
     float humidity = getPercentHumidity();
-    delay(10);
+    delay(1000);
     if ((warning == 0) && (humidity < 10  ||  humidity > 90)) {
         warning = 1;
         Serial.println("\ndangerous humidity values, sending alert...");
-        String data = getParams();
-        int statusCode = postReq("http://ptsv2.com/t/g5483-1665875753/post", data);
-        Serial.print("status code: ");
-        Serial.println(statusCode);
+        String tweet = getGPT("gpt-3.5-turbo", "Primeira coisa que você precisa entender e que o texto gerado nao pode passar de 210 caracteres. Imagine que você é uma planta comediante e deseja enviar uma mensagem (no maximo 210 caracteres) de socorro para @marceloapda, seu criador. No entanto, a sua umidade do solo está em" + String(humidity) + "%, o que afeta diretamente o seu humor. Crie um tweet com no maximo 210 caracteres em português que mencione de forma clara a sua condição de umidade, sem revelar que você é uma planta. Compartilhe uma mensagem engraçada pedindo socorro @marceloapda dizendo que algo esta acontecendo de errado, seja criativa. Deixe o humor da mensagem compatível com a umidade do solo Lembre-se de dar sugestões para @marceloapda para reverter a situação da condições do seu solo, evite dizer que você e uma comediante. Não se esqueça: 210 caracteres!");
+        sendTweet(tweet);
     }
 }
 
