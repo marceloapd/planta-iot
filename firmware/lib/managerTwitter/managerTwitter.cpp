@@ -1,28 +1,34 @@
-#include <ESP8266WiFi.h>
-#include <WiFiClient.h>
 #include <ESP8266HTTPClient.h>
+#include <WiFiClientSecure.h>
 
-HTTPClient twitterHttp;
-WiFiClient twitterClient;
+void sendTweet(String status){
 
-void sendTweet(String status) {
-  twitterHttp.begin(twitterClient, "http://api.thingspeak.com/apps/thingtweet/1/statuses/update");
+  HTTPClient twitterHttp;
+  WiFiClientSecure client;
+
+  client.setInsecure();
+  client.setTimeout(10000);
+
+  twitterHttp.begin(client, "https://api.twitter.com/2/tweets");
   twitterHttp.addHeader("Content-Type", "application/json");
+  twitterHttp.addHeader("Authorization", "OAuth oauth_consumer_key=\"wpsn1rY4bSDsTChJqbqOzYFhv\",oauth_token=\"1263302848651165696-WZoegbLnMcwxZz34B8kva1TTSuxPiR\",oauth_signature_method=\"HMAC-SHA1\",oauth_timestamp=\"1680606753\",oauth_nonce=\"ii2cXuOBTqL\",oauth_version=\"1.0\",oauth_signature=\"OstWjFFFvP%2BOH7ZbYF25mVu9BLs%3D\"");
 
-  // Define o corpo da requisição
-  String requestBody = "{\"api_key\": \"{{api_key}}\", \"status\":\""+status+"\"}";
-  Serial.println(requestBody);
+  String postData = "{\"text\": \"" + status + "\"}";
 
-  // Envia a requisição HTTP POST
-  int httpResponseCode = twitterHttp.POST(requestBody);
+  int httpCode = twitterHttp.POST(postData);
 
-  // Verifica se a requisição foi bem sucedida
-  if (httpResponseCode == HTTP_CODE_OK) {
-    Serial.println("Tweet enviado com sucesso!");
-  } else {
-    Serial.println("Erro ao enviar tweet.");
+  if (httpCode > 0)
+  {
+    String response = twitterHttp.getString();
+    Serial.println("Response:");
+    Serial.println(response);
+  }
+  else
+  {
+    Serial.println("Error on sending POST request");
+    Serial.println(twitterHttp.errorToString(httpCode));
   }
 
-  // Encerra a conexão HTTP
   twitterHttp.end();
+
 }

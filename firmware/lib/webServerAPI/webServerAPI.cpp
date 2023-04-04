@@ -37,20 +37,6 @@ void sensors() {
     blinkLed();
 }
 
-void setRoutes () {
-    server.on("/sensors", HTTP_GET, sensors);
-    server.onNotFound(handleNotFounded);
-}
-
-void webServerInit() {
-    setRoutes();
-    setHeaders();
-    server.begin();
-    String ipLocal = WiFi.localIP().toString();
-    String ipMac = WiFi.macAddress();
-    Serial.println("HTTP server started at " + ipLocal + ":" + String(port) + "\n\nMAC: " + ipMac );
-}
-
 int postReq(String url, String data) {
     http.begin(wifiClient, url);     
     http.addHeader("Content-Type", "application/json");  
@@ -125,6 +111,30 @@ void sendData(){
     float humidity = getPercentHumidity();
     String tweet = getGPT("gpt-3.5-turbo", "Primeira coisa que você precisa entender e que o texto gerado nao pode passar de 210 caracteres. Imagine que você é uma planta comediante e deseja enviar uma mensagem (no maximo 210 caracteres) para @marceloapda, seu criador. No entanto, a sua umidade do solo está em" + String(humidity) + "%, o que afeta diretamente o seu humor. Para a maioria das plantas a umidade do solo ideal é cerca de 50% a 75% , Entao crie um tweet com no maximo 210 caracteres em português que mencione de forma clara a sua condição de umidade, sem revelar que você é uma planta. Compartilhe uma mensagem engraçada ou fale um pouco sobre o que gostaria de fazer no dia de hoje ou talvez oque você sonhou, ou tentar conquistar o @marceloapda com uma cantada ou elegio, seja criativa. Deixe o humor da mensagem compatível com a umidade do solo Lembre-se de dar sugestões para @marceloapda para cuidar melhor de você SOMENTE caso as condições do seu solo não sejam as ideais. evite dizer que você e uma comediante. Não se esqueça: 210 caracteres!");
     sendTweet(tweet);
+}
+
+void tweet() {
+    setHeaders();
+    float humidity = getPercentHumidity();
+    String tweet = getGPT("gpt-3.5-turbo", "Primeira coisa que você precisa entender e que o texto gerado nao pode passar de 210 caracteres. Imagine que você é uma planta comediante e deseja enviar uma mensagem (no maximo 210 caracteres) para @marceloapda, seu criador. No entanto, a sua umidade do solo está em" + String(humidity) + "%, o que afeta diretamente o seu humor. Para a maioria das plantas a umidade do solo ideal é cerca de 50% a 75% , Entao crie um tweet com no maximo 210 caracteres em português que mencione de forma clara a sua condição de umidade, sem revelar que você é uma planta. Compartilhe uma mensagem engraçada ou fale um pouco sobre o que gostaria de fazer no dia de hoje ou talvez oque você sonhou, ou tentar conquistar o @marceloapda com uma cantada ou elegio, seja criativa. Deixe o humor da mensagem compatível com a umidade do solo Lembre-se de dar sugestões para @marceloapda para cuidar melhor de você SOMENTE caso as condições do seu solo não sejam as ideais. evite dizer que você e uma comediante. Não se esqueça: 210 caracteres!");
+    sendTweet(tweet);
+    server.send(200, "application/json", tweet);
+    blinkLed();
+}
+
+void setRoutes () {
+    server.on("/sensors", HTTP_GET, sensors);
+    server.on("/tweet", HTTP_GET, tweet);
+    server.onNotFound(handleNotFounded);
+}
+
+void webServerInit() {
+    setRoutes();
+    setHeaders();
+    server.begin();
+    String ipLocal = WiFi.localIP().toString();
+    String ipMac = WiFi.macAddress();
+    Serial.println("HTTP server started at " + ipLocal + ":" + String(port) + "\n\nMAC: " + ipMac );
 }
 
 void handleClient () {
