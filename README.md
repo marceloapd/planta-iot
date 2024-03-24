@@ -2,11 +2,9 @@
 
 <!---Esses são exemplos. Veja https://shields.io para outras pessoas ou para personalizar este conjunto de escudos. Você pode querer incluir dependências, status do projeto e informações de licença aqui--->
 
-![GitHub repo size](https://img.shields.io/github/repo-size/assisDev/Plant-IOT?style=for-the-badge)
-![GitHub language count](https://img.shields.io/github/languages/count/assisDev/Plant-IOT?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/assisDev/Plant-IOT?style=for-the-badge)
-![Bitbucket open issues](https://img.shields.io/bitbucket/issues/assisDev/Plant-IOT?style=for-the-badge)
-![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/assisDev/Plant-IOT?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/marceloapd/planta-iot?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/marceloapd/planta-iot?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/marceloapd/planta-iot?style=for-the-badge)
 
 <img src="https://user-images.githubusercontent.com/71731452/135922766-871c97f0-67c5-46b8-b972-76a32027aeaa.png" alt="exemplo imagem">
 
